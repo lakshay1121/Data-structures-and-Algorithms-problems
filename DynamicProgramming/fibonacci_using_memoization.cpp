@@ -24,6 +24,26 @@ int fibo_using_tabulation(int n, vector<int> &dp)
     return dp[n];
 }
 
+// T(c) -> O(n)
+// S(c) -> O(1)
+int most_optimized(int n ){
+    
+    int prev2 = 0 ; 
+    int prev = 1;
+    
+    for(int i = 2 ; i <= n ; i++){
+        
+        int curri = prev2 + prev;
+        
+        prev2 = prev;
+        
+        prev = curri;
+    }
+    
+    return prev;
+    
+}
+
 int main()
 {
     int n;
@@ -36,5 +56,7 @@ int main()
     cout << endl;
 
     cout << fibo_using_tabulation(n, dp);
+    
+    cout << most_optimized(n);
     return 0;
 }
