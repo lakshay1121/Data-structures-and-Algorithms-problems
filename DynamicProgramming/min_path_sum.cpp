@@ -83,3 +83,51 @@ public:
 //space optimization.
 //t(c) -> O(m*n).
 //s(c) -> O(n).
+
+
+class Solution {
+public:
+    
+    int minPathSum(vector<vector<int>>& grid) {
+        
+        int i = grid.size();
+        
+        int j = grid[0].size();
+        
+        vector<int> prev(j,0);
+        
+        for(int row = 0 ; row < i ; row++){
+            
+            vector<int> cur(j,0);
+            
+            for(int col = 0 ; col < j ; col++){
+                
+                if(row == 0 && col == 0) cur[col] = grid[row][col];
+                
+                else if(row < 0 || col < 0) cur[col] = 1e9;
+                
+                else{
+                    
+                    int left = 0 , up = 0;
+                    
+                    left = grid[row][col];
+                    
+                    if(col>0) left += cur[col-1];
+                    
+                    else left += 1e9;
+                    
+                    up = grid[row][col];
+                    
+                    if(row>0) up += prev[col];
+                    
+                    else up += 1e9;
+                    
+                    cur[col] = min(left,up);
+                }
+            }
+            
+            prev = cur;
+        }
+        return prev[j-1];
+    }
+};
