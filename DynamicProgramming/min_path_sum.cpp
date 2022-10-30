@@ -78,3 +78,8 @@ public:
         return dp[i-1][j-1];
     }
 };
+
+
+//space optimization.
+//t(c) -> O(m*n).
+//s(c) -> O(n).
