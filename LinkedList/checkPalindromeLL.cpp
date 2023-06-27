@@ -49,7 +49,6 @@ class Solution {
             if(curr1 -> val != curr2 -> val){
 
                 return false; 
-                break;
             }
 
             curr1 = curr1 -> next;
